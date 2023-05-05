@@ -1,4 +1,4 @@
-# Swift JOSE Library
+# Swift JOSE
 
 Swift JOSE is a package for the Swift programming language that provides implementation for the JSON Object Signing and Encryption (JOSE) family of [specifications](https://datatracker.ietf.org/wg/jose/documents/).
 
