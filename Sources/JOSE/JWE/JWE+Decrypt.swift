@@ -383,7 +383,7 @@ public extension JWE {
             guard let p = jwk.p, let q = jwk.q else {
                 throw JWK.Error.missingPrimesComponent
             }
-            let rsaPrivateKey = CryptoSwift.RSA(
+            let rsaPrivateKey = try CryptoSwift.RSA(
                 n: BigUInteger(n),
                 e: BigUInteger(e),
                 d: BigUInteger(d),

@@ -20,9 +20,7 @@ let package = Package(
         // For `secp256k1` support
         .package(url: "https://github.com/GigaBitcoin/secp256k1.swift.git", .upToNextMajor(from: "0.10.0")),
         // For `AES_CBC_HMAC_SHA2`, `PBES2` and RSA DER encoding support
-        // Note: This package will be modified once the pull request at https://github.com/krzyzanowskim/CryptoSwift/pull/1014 is merged and released under a tag.
-        .package(url: "https://github.com/proxyco/CryptoSwift.git", revision: "8c8aff8daaf4581ff0d86926b3d51e7537462143"),
-        // .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMajor(from: "1.7.1")),
+        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMajor(from: "1.7.2")),
     ],
     targets: [
         .target(
