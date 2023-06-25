@@ -202,8 +202,8 @@ final class JWETests: XCTestCase {
         )
         recipient2JWK.keyID = "7"
 
-        let recipients: [JWE.Recipient] = [
-            try .init(
+        let recipients: [JWE.Recipient] = try [
+            .init(
                 header: JSONDecoder().decode(
                     JOSEHeader.self,
                     from: """
@@ -212,7 +212,7 @@ final class JWETests: XCTestCase {
                 ),
                 jwk: recipient1JWK
             ),
-            try .init(
+            .init(
                 header: JSONDecoder().decode(
                     JOSEHeader.self,
                     from: """
@@ -1422,7 +1422,7 @@ final class JWETests: XCTestCase {
                 ),
                 jwk: recipient1JWK
             ),
-            try .init(
+            .init(
                 header: .init(
                     algorithm: .ecdhESA256KW,
                     keyID: "peregrin.took@tuckborough.example",
