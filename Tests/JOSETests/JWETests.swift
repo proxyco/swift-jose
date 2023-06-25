@@ -59,6 +59,9 @@ final class JWETests: XCTestCase {
                 algorithm: .rsaOAEP,
                 encryptionAlgorithm: .a256GCM
             ),
+            encodedProtectedHeader: """
+            eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00ifQ
+            """.replacingWhiteSpacesAndNewLines(),
             contentEncryptionKey: .init([
                 177, 161, 244, 128, 84, 143, 225, 115, 63, 180, 3, 255, 107, 154,
                 212, 246, 138, 7, 110, 91, 112, 46, 34, 105, 47, 130, 203, 46, 122,
@@ -69,7 +72,7 @@ final class JWETests: XCTestCase {
             ])
         )
 
-        // Note: Due to 'RSA-OAEP' encryption's non-deterministic nature, serialization won't match the [test vector](https://www.rfc-editor.org/rfc/rfc7516#appendix-A.1.7).
+        // Note: Due to 'RSA-OAEP' encryption's non-deterministic nature, serialization won't match the [test vector](https://www.rfc-editor.org/rfc/rfc7516#appendix-A.1.7)
         // However, successful decryption remains essential.
 
         let receivedPlaintext = try JWE.decrypt(serialization: serialization, using: recipientJWK)
@@ -118,6 +121,9 @@ final class JWETests: XCTestCase {
                 algorithm: .a128KW,
                 encryptionAlgorithm: .a128CBCHS256
             ),
+            encodedProtectedHeader: """
+            eyJhbGciOiJBMTI4S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0
+            """.replacingWhiteSpacesAndNewLines(),
             contentEncryptionKey: .init([
                 4, 211, 31, 197, 84, 157, 252, 254, 11, 100, 157, 250, 63, 170, 106,
                 206, 107, 124, 212, 45, 111, 107, 9, 219, 200, 177, 0, 240, 143, 156,
@@ -231,7 +237,7 @@ final class JWETests: XCTestCase {
             jsonEncoder: JSONEncoder()
         )
 
-        // Note: Due to 'RSA1_5' encryption's non-deterministic nature, serialization won't match the [test vector](https://www.rfc-editor.org/rfc/rfc7516#appendix-A.4.7).
+        // Note: Due to 'RSA1_5' encryption's non-deterministic nature, serialization won't match the [test vector](https://www.rfc-editor.org/rfc/rfc7516#appendix-A.4.7)
         // However, successful decryption remains essential.
 
         let receivedPlaintext = try JWE.decrypt(
@@ -382,11 +388,15 @@ final class JWETests: XCTestCase {
                 encryptionAlgorithm: .a128CBCHS256,
                 keyID: recipientJWK.keyID
             ),
+            encodedProtectedHeader: """
+            eyJhbGciOiJSU0ExXzUiLCJraWQiOiJmcm9kby5iYWdnaW5zQGhvYmJpdG9uLm
+            V4YW1wbGUiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0
+            """.replacingWhiteSpacesAndNewLines(),
             contentEncryptionKey: Base64URL.decode("3qyTVhIWt5juqZUCpfRqpvauwB956MEJL2Rt-8qXKSo"),
             initializationVector: Base64URL.decode("bbd5sTkYwhAIqfHsx8DayA")
         )
 
-        // Note: Due to 'RSA1_5' encryption's non-deterministic nature, serialization won't match the [output results](https://www.rfc-editor.org/rfc/rfc7520#section-5.1.5).
+        // Note: Due to 'RSA1_5' encryption's non-deterministic nature, serialization won't match the [output results](https://www.rfc-editor.org/rfc/rfc7520#section-5.1.5)
         // However, successful decryption remains essential.
 
         let receivedPlaintext = try JWE.decrypt(serialization: serialization, using: recipientJWK)
@@ -509,11 +519,15 @@ final class JWETests: XCTestCase {
                 encryptionAlgorithm: .a256GCM,
                 keyID: recipientJWK.keyID
             ),
+            encodedProtectedHeader: """
+            eyJhbGciOiJSU0EtT0FFUCIsImtpZCI6InNhbXdpc2UuZ2FtZ2VlQGhvYmJpdG
+            9uLmV4YW1wbGUiLCJlbmMiOiJBMjU2R0NNIn0
+            """.replacingWhiteSpacesAndNewLines(),
             contentEncryptionKey: Base64URL.decode("mYMfsggkTAm0TbvtlFh2hyoXnbEzJQjMxmgLN3d8xXA"),
             initializationVector: Base64URL.decode("-nBoKLH0YkLZPSI9")
         )
 
-        // Note: Due to 'RSA-OAEP' encryption's non-deterministic nature, serialization won't match the [output results](https://www.rfc-editor.org/rfc/rfc7520#section-5.2.5).
+        // Note: Due to 'RSA-OAEP' encryption's non-deterministic nature, serialization won't match the [output results](https://www.rfc-editor.org/rfc/rfc7520#section-5.2.5)
         // However, successful decryption remains essential.
 
         let receivedPlaintext = try JWE.decrypt(serialization: serialization, using: recipientJWK)
@@ -1452,7 +1466,7 @@ final class JWETests: XCTestCase {
             jsonEncoder: .init()
         )
 
-        // Note: Due to 'RSA1_5' encryption's non-deterministic nature, serialization won't match the [test vector](https://www.rfc-editor.org/rfc/rfc7520#section-5.13.7).
+        // Note: Due to 'RSA1_5' encryption's non-deterministic nature, serialization won't match the [test vector](https://www.rfc-editor.org/rfc/rfc7520#section-5.13.7)
         // However, successful decryption remains essential.
 
         let receivedPlaintext = try JWE.decrypt(
@@ -1588,6 +1602,9 @@ final class JWETests: XCTestCase {
                 // Inform the recipient about the specific sender key used for encrypted authentication.
                 senderKeyID: senderJWK.keyID
             ),
+            encodedProtectedHeader: """
+            eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiRUNESC0xUFUiLCJza2lkIjoiM0VBMDRBRTUtRkMyMi00Rjk5LTkyNTAtMjhFQjc0OTJDQ0Y1IiwiemlwIjoiREVGIiwiZXBrIjp7Imt0eSI6Ik9LUCIsImNydiI6IlgyNTUxOSIsIngiOiJrOW9mX2NwQWFqeTBwb1c1Z2FpeFhHczluSGt3ZzFBRnFVQUZhMzlkeUJjIn0sImtpZCI6IjYxRjU2ODk2LUY1MzctNDNCMC1CMEZBLTU3M0U1QzBGNjZBMyIsImFwdSI6ImFIUjBjSE02THk5bGVHRnRjR3hsTG1OdmJTOXpaVzVrWlhJdWFuZHJjdyJ9
+            """.replacingWhiteSpacesAndNewLines(),
             // Specify the initialization vector for consistent output. Leave it empty to let the library generate it automatically.
             initializationVector: Base64URL.decode("FkGX4uU1mkcLCWV9")
         )
