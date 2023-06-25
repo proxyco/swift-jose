@@ -41,7 +41,7 @@ public extension JWK {
             case is P521.KeyAgreement.PrivateKey.Type:
                 return try P521.KeyAgreement.PrivateKey(rawRepresentation: d) as! T
             case is secp256k1.KeyAgreement.PrivateKey.Type:
-                return try secp256k1.KeyAgreement.PrivateKey(rawRepresentation: d, format: .uncompressed) as! T
+                return try secp256k1.KeyAgreement.PrivateKey(dataRepresentation: d, format: .uncompressed) as! T
             case is Curve25519.KeyAgreement.PrivateKey.Type:
                 return try Curve25519.KeyAgreement.PrivateKey(rawRepresentation: d) as! T
             case is Curve448.KeyAgreement.PrivateKey.Type:
@@ -72,7 +72,7 @@ public extension JWK {
             case is secp256k1.KeyAgreement.PublicKey.Type:
                 // The uncompressed public key is 65 bytes long: a single byte prefix (0x04) followed by the two 32-byte coordinates.
                 return try secp256k1.KeyAgreement.PublicKey(
-                    rawRepresentation: [0x04] + data,
+                    dataRepresentation: [0x04] + data,
                     format: .uncompressed
                 ) as! T
             default:

@@ -110,7 +110,7 @@ extension secp256k1.KeyAgreement.PrivateKey: JWKRepresentable {
     /// Returns the JWK representation of a `secp256k1.KeyAgreement.PrivateKey` instance.
     public var jwkRepresentation: JWK {
         // The uncompressed public key is 65 bytes long: a single byte prefix (0x04) followed by the two 32-byte coordinates.
-        let publicKeyRawRepresentation = publicKey.rawRepresentation.dropFirst(1)
+        let publicKeyRawRepresentation = publicKey.dataRepresentation.dropFirst(1)
         let x = publicKeyRawRepresentation.prefix(publicKeyRawRepresentation.count / 2)
         let y = publicKeyRawRepresentation.suffix(publicKeyRawRepresentation.count / 2)
         return JWK(
@@ -194,7 +194,7 @@ extension secp256k1.KeyAgreement.PublicKey: JWKRepresentable {
     /// Returns the JWK representation of a `secp256k1.KeyAgreement.PublicKey` instance.
     public var jwkRepresentation: JWK {
         // The uncompressed public key is 65 bytes long: a single byte prefix (0x04) followed by the two 32-byte coordinates.
-        let publicKeyRawRepresentation = rawRepresentation.dropFirst(1)
+        let publicKeyRawRepresentation = dataRepresentation.dropFirst(1)
         let x = publicKeyRawRepresentation.prefix(publicKeyRawRepresentation.count / 2)
         let y = publicKeyRawRepresentation.suffix(publicKeyRawRepresentation.count / 2)
         return JWK(
